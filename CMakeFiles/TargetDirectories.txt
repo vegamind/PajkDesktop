@@ -1,0 +1,3 @@
+/home/jakob/Documents/pajkDesktop/CMakeFiles/pajk.dir
+/home/jakob/Documents/pajkDesktop/CMakeFiles/edit_cache.dir
+/home/jakob/Documents/pajkDesktop/CMakeFiles/rebuild_cache.dir

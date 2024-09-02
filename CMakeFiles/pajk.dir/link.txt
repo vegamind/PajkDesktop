@@ -1,0 +1,1 @@
+/usr/bin/c++  -g CMakeFiles/pajk.dir/src/bmpCreator.cpp.o CMakeFiles/pajk.dir/src/gcodeInterpreter.cpp.o CMakeFiles/pajk.dir/src/main.cpp.o -o pajk 
