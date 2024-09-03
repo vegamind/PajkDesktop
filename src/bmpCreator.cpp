@@ -1,19 +1,10 @@
 #include "bmpCreator.hpp"
 
 
-BMPCreator::BMPCreator(std::string in, std::string out): inputPath(in), outputPath(out){
+BMPCreator::BMPCreator(std::string in, std::string out, uint32_t xRes, uint32_t yRes): inputPath(in), outputPath(out), xRes(xRes), yRes(yRes){
     SetupStreams();
     ReadGCODEData();
-
-    float maxX = 0;
-    float maxY = 0;
-
-    for(uint32_t i = 0; i < gcodeBuff.size(); i += 2){
-        maxX = std::max(gcodeBuff[i], maxX);
-        maxY = std::max(gcodeBuff[i + i + 1], maxX);
-    }
-
-    std::cerr << maxX << " " << maxY << "\n";
+    NormalizeCoordinates();
 }
 
 void BMPCreator::SetupStreams(){
@@ -44,6 +35,24 @@ void BMPCreator::ReadGCODEData(){
         std::memcpy(&gcodeBuff[i], buff.data()+1, 8);
 
         i += 2;
+    }
+}
+
+void BMPCreator::NormalizeCoordinates(){
+    float maxX = 0;
+    float maxY = 0;
+
+    for(uint32_t i = 0; i < gcodeBuff.size(); i += 2){
+        maxX = std::max(gcodeBuff[i], maxX);
+        maxY = std::max(gcodeBuff[i + i + 1], maxX);
+    }
+
+    for(uint32_t i = 0; i < gcodeBuff.size(); i += 2){
+        gcodeBuff[i] /= maxX;
+        gcodeBuff[i+1] /= maxY;
+
+        gcodeBuff[i] *= xRes;
+        gcodeBuff[i+1] *= yRes;
     }
 }
 

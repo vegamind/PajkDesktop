@@ -10,7 +10,7 @@
 
 class BMPCreator{
 public:
-    BMPCreator(std::string in, std::string out);
+    BMPCreator(std::string in, std::string out, uint32_t xRes, uint32_t yRes);
     ~BMPCreator();
 
     BMPCreator(const BMPCreator& other) = delete;
@@ -21,6 +21,7 @@ private:
 
     void SetupStreams();
     void ReadGCODEData();
+    void NormalizeCoordinates();
 
     std::shared_ptr<std::fstream> inStream;
     std::shared_ptr<std::ofstream> outStream;
@@ -29,4 +30,7 @@ private:
     std::string outputPath;
 
     std::vector<float> gcodeBuff;
+
+    uint32_t xRes;
+    uint32_t yRes;
 };

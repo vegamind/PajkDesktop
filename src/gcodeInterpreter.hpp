@@ -6,7 +6,7 @@
 
 class GCODEInterpreter{
 public:
-    GCODEInterpreter(std::string in, std::string out, uint32_t resX, uint32_t resY);
+    GCODEInterpreter(std::string in, std::string out);
 
     GCODEInterpreter(const GCODEInterpreter& other) = delete;
     GCODEInterpreter& operator=(const GCODEInterpreter& other) = delete;
@@ -28,7 +28,4 @@ private:
 
     std::string inputPath;
     std::string outputPath;
-
-    uint32_t resX;
-    uint32_t resY;
 };

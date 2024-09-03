@@ -1,7 +1,7 @@
 CMakeFiles/pajk.dir/src/bmpCreator.cpp.o: \
- /home/jakob/Documents/pajkDesktop/src/bmpCreator.cpp \
+ /home/jakob/Documents/PajkDesktop/src/bmpCreator.cpp \
  /usr/include/stdc-predef.h \
- /home/jakob/Documents/pajkDesktop/src/bmpCreator.hpp \
+ /home/jakob/Documents/PajkDesktop/src/bmpCreator.hpp \
  /usr/include/c++/13/fstream /usr/include/c++/13/bits/requires_hosted.h \
  /usr/include/x86_64-linux-gnu/c++/13/bits/c++config.h \
  /usr/include/x86_64-linux-gnu/c++/13/bits/os_defines.h \

@@ -57,10 +57,10 @@ RM = /usr/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/jakob/Documents/pajkDesktop
+CMAKE_SOURCE_DIR = /home/jakob/Documents/PajkDesktop
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/jakob/Documents/pajkDesktop
+CMAKE_BINARY_DIR = /home/jakob/Documents/PajkDesktop
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -87,9 +87,9 @@ rebuild_cache/fast: rebuild_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/jakob/Documents/pajkDesktop/CMakeFiles /home/jakob/Documents/pajkDesktop//CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/jakob/Documents/PajkDesktop/CMakeFiles /home/jakob/Documents/PajkDesktop//CMakeFiles/progress.marks
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/jakob/Documents/pajkDesktop/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/jakob/Documents/PajkDesktop/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
@@ -177,6 +177,30 @@ src/gcodeInterpreter.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/pajk.dir/build.make CMakeFiles/pajk.dir/src/gcodeInterpreter.cpp.s
 .PHONY : src/gcodeInterpreter.cpp.s
 
+src/glRasterizer.o: src/glRasterizer.cpp.o
+.PHONY : src/glRasterizer.o
+
+# target to build an object file
+src/glRasterizer.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/pajk.dir/build.make CMakeFiles/pajk.dir/src/glRasterizer.cpp.o
+.PHONY : src/glRasterizer.cpp.o
+
+src/glRasterizer.i: src/glRasterizer.cpp.i
+.PHONY : src/glRasterizer.i
+
+# target to preprocess a source file
+src/glRasterizer.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/pajk.dir/build.make CMakeFiles/pajk.dir/src/glRasterizer.cpp.i
+.PHONY : src/glRasterizer.cpp.i
+
+src/glRasterizer.s: src/glRasterizer.cpp.s
+.PHONY : src/glRasterizer.s
+
+# target to generate assembly for a file
+src/glRasterizer.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/pajk.dir/build.make CMakeFiles/pajk.dir/src/glRasterizer.cpp.s
+.PHONY : src/glRasterizer.cpp.s
+
 src/main.o: src/main.cpp.o
 .PHONY : src/main.o
 
@@ -216,6 +240,9 @@ help:
 	@echo "... src/gcodeInterpreter.o"
 	@echo "... src/gcodeInterpreter.i"
 	@echo "... src/gcodeInterpreter.s"
+	@echo "... src/glRasterizer.o"
+	@echo "... src/glRasterizer.i"
+	@echo "... src/glRasterizer.s"
 	@echo "... src/main.o"
 	@echo "... src/main.i"
 	@echo "... src/main.s"

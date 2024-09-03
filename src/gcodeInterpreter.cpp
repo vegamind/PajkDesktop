@@ -3,8 +3,7 @@
 #include <fstream>
 #include <exception>
 
-GCODEInterpreter::GCODEInterpreter(std::string inputPath, std::string outputPath, uint32_t resX, uint32_t resY): inputPath(inputPath), outputPath(outputPath),
-resX(resX), resY(resY){
+GCODEInterpreter::GCODEInterpreter(std::string inputPath, std::string outputPath): inputPath(inputPath), outputPath(outputPath){
     SetupStreams();
     ReadFile();
 }
