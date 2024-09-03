@@ -28,4 +28,6 @@ private:
 
     std::string inputPath;
     std::string outputPath;
+
+    float z;
 };

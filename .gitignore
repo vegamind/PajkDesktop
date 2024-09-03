@@ -3,4 +3,4 @@ out.txt
 pajk
 test.bmp
 cmake_install_cmake
-CMakeFiles
+CMakeFiles/*

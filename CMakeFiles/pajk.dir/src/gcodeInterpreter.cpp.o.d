@@ -1,7 +1,7 @@
 CMakeFiles/pajk.dir/src/gcodeInterpreter.cpp.o: \
- /home/jakob/Documents/PajkDesktop/src/gcodeInterpreter.cpp \
+ /home/jakob/Documents/pajkDesktop/src/gcodeInterpreter.cpp \
  /usr/include/stdc-predef.h \
- /home/jakob/Documents/PajkDesktop/src/gcodeInterpreter.hpp \
+ /home/jakob/Documents/pajkDesktop/src/gcodeInterpreter.hpp \
  /usr/include/c++/13/iostream /usr/include/c++/13/bits/requires_hosted.h \
  /usr/include/x86_64-linux-gnu/c++/13/bits/c++config.h \
  /usr/include/x86_64-linux-gnu/c++/13/bits/os_defines.h \

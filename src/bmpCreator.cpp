@@ -5,6 +5,8 @@ BMPCreator::BMPCreator(std::string in, std::string out, uint32_t xRes, uint32_t 
     SetupStreams();
     ReadGCODEData();
     NormalizeCoordinates();
+
+    rasterizer.reset(new GLRasterizer(gcodeBuff, xRes, yRes));
 }
 
 void BMPCreator::SetupStreams(){
@@ -51,8 +53,6 @@ void BMPCreator::NormalizeCoordinates(){
         gcodeBuff[i] /= maxX;
         gcodeBuff[i+1] /= maxY;
 
-        gcodeBuff[i] *= xRes;
-        gcodeBuff[i+1] *= yRes;
     }
 }
 

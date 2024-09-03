@@ -57,10 +57,10 @@ RM = /usr/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/jakob/Documents/PajkDesktop
+CMAKE_SOURCE_DIR = /home/jakob/Documents/pajkDesktop
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/jakob/Documents/PajkDesktop
+CMAKE_BINARY_DIR = /home/jakob/Documents/pajkDesktop
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -87,9 +87,9 @@ rebuild_cache/fast: rebuild_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/jakob/Documents/PajkDesktop/CMakeFiles /home/jakob/Documents/PajkDesktop//CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/jakob/Documents/pajkDesktop/CMakeFiles /home/jakob/Documents/pajkDesktop//CMakeFiles/progress.marks
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/jakob/Documents/PajkDesktop/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/jakob/Documents/pajkDesktop/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
@@ -128,6 +128,30 @@ pajk: cmake_check_build_system
 pajk/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/pajk.dir/build.make CMakeFiles/pajk.dir/build
 .PHONY : pajk/fast
+
+glad/glad.o: glad/glad.c.o
+.PHONY : glad/glad.o
+
+# target to build an object file
+glad/glad.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/pajk.dir/build.make CMakeFiles/pajk.dir/glad/glad.c.o
+.PHONY : glad/glad.c.o
+
+glad/glad.i: glad/glad.c.i
+.PHONY : glad/glad.i
+
+# target to preprocess a source file
+glad/glad.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/pajk.dir/build.make CMakeFiles/pajk.dir/glad/glad.c.i
+.PHONY : glad/glad.c.i
+
+glad/glad.s: glad/glad.c.s
+.PHONY : glad/glad.s
+
+# target to generate assembly for a file
+glad/glad.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/pajk.dir/build.make CMakeFiles/pajk.dir/glad/glad.c.s
+.PHONY : glad/glad.c.s
 
 src/bmpCreator.o: src/bmpCreator.cpp.o
 .PHONY : src/bmpCreator.o
@@ -234,6 +258,9 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... pajk"
+	@echo "... glad/glad.o"
+	@echo "... glad/glad.i"
+	@echo "... glad/glad.s"
 	@echo "... src/bmpCreator.o"
 	@echo "... src/bmpCreator.i"
 	@echo "... src/bmpCreator.s"

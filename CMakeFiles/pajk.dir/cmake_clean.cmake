@@ -1,4 +1,6 @@
 file(REMOVE_RECURSE
+  "CMakeFiles/pajk.dir/glad/glad.c.o"
+  "CMakeFiles/pajk.dir/glad/glad.c.o.d"
   "CMakeFiles/pajk.dir/src/bmpCreator.cpp.o"
   "CMakeFiles/pajk.dir/src/bmpCreator.cpp.o.d"
   "CMakeFiles/pajk.dir/src/gcodeInterpreter.cpp.o"
@@ -12,6 +14,6 @@ file(REMOVE_RECURSE
 )
 
 # Per-language clean rules from dependency scanning.
-foreach(lang CXX)
+foreach(lang C CXX)
   include(CMakeFiles/pajk.dir/cmake_clean_${lang}.cmake OPTIONAL)
 endforeach()

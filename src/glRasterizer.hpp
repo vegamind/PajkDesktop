@@ -2,10 +2,10 @@
 
 #include <vector>
 #include <stdexcept>
-
-#include <GLFW/glfw3.h>
+#include <iostream>
 
 #include "../glad/glad.h"
+#include <GLFW/glfw3.h>
 
 class GLRasterizer{
 public:
@@ -19,6 +19,18 @@ public:
 
 private:
     void CreateContext();
+    void CreateBuffer();
+    void CompileShader();
+    void DrawShape();
+    void ReadPixels();
 
     GLFWwindow* window;
+
+    GLuint VAO, VBO;
+    GLuint program;
+
+    uint32_t resX;
+    uint32_t resY;
+    
+    std::vector<float>& data;
 };

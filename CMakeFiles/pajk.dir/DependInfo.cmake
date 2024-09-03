@@ -8,10 +8,11 @@ set(CMAKE_DEPENDS_LANGUAGES
 
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
-  "/home/jakob/Documents/PajkDesktop/src/bmpCreator.cpp" "CMakeFiles/pajk.dir/src/bmpCreator.cpp.o" "gcc" "CMakeFiles/pajk.dir/src/bmpCreator.cpp.o.d"
-  "/home/jakob/Documents/PajkDesktop/src/gcodeInterpreter.cpp" "CMakeFiles/pajk.dir/src/gcodeInterpreter.cpp.o" "gcc" "CMakeFiles/pajk.dir/src/gcodeInterpreter.cpp.o.d"
-  "/home/jakob/Documents/PajkDesktop/src/glRasterizer.cpp" "CMakeFiles/pajk.dir/src/glRasterizer.cpp.o" "gcc" "CMakeFiles/pajk.dir/src/glRasterizer.cpp.o.d"
-  "/home/jakob/Documents/PajkDesktop/src/main.cpp" "CMakeFiles/pajk.dir/src/main.cpp.o" "gcc" "CMakeFiles/pajk.dir/src/main.cpp.o.d"
+  "/home/jakob/Documents/pajkDesktop/glad/glad.c" "CMakeFiles/pajk.dir/glad/glad.c.o" "gcc" "CMakeFiles/pajk.dir/glad/glad.c.o.d"
+  "/home/jakob/Documents/pajkDesktop/src/bmpCreator.cpp" "CMakeFiles/pajk.dir/src/bmpCreator.cpp.o" "gcc" "CMakeFiles/pajk.dir/src/bmpCreator.cpp.o.d"
+  "/home/jakob/Documents/pajkDesktop/src/gcodeInterpreter.cpp" "CMakeFiles/pajk.dir/src/gcodeInterpreter.cpp.o" "gcc" "CMakeFiles/pajk.dir/src/gcodeInterpreter.cpp.o.d"
+  "/home/jakob/Documents/pajkDesktop/src/glRasterizer.cpp" "CMakeFiles/pajk.dir/src/glRasterizer.cpp.o" "gcc" "CMakeFiles/pajk.dir/src/glRasterizer.cpp.o.d"
+  "/home/jakob/Documents/pajkDesktop/src/main.cpp" "CMakeFiles/pajk.dir/src/main.cpp.o" "gcc" "CMakeFiles/pajk.dir/src/main.cpp.o.d"
   )
 
 # Targets to which this target links which contain Fortran sources.

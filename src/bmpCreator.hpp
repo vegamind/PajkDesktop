@@ -8,6 +8,8 @@
 #include <array>
 #include <cstring>
 
+#include "glRasterizer.hpp"
+
 class BMPCreator{
 public:
     BMPCreator(std::string in, std::string out, uint32_t xRes, uint32_t yRes);
@@ -33,4 +35,6 @@ private:
 
     uint32_t xRes;
     uint32_t yRes;
+
+    std::shared_ptr<GLRasterizer> rasterizer;
 };
