@@ -1,12 +1,13 @@
 #pragma once
 
 #include <fstream>
-#include <memory>
 #include <iostream>
+#include <memory>
 #include <exception>
 #include <vector>
 #include <array>
 #include <cstring>
+#include <list>
 
 #include "glRasterizer.hpp"
 
@@ -31,7 +32,7 @@ private:
     std::string inputPath;
     std::string outputPath;
 
-    std::vector<float> gcodeBuff;
+    std::vector<std::vector<float>> gcodeBuff;
 
     uint32_t xRes;
     uint32_t yRes;

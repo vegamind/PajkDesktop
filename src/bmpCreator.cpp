@@ -21,22 +21,46 @@ void BMPCreator::SetupStreams(){
         throw std::runtime_error("Failed to create or truncate a file for writing " + inputPath);
     }
 }
-
+ 
+ 
+ 
 void BMPCreator::ReadGCODEData(){
     size_t size = inStream->tellg();
     inStream->seekg(0);
 
-    gcodeBuff.resize((size - size/9) / sizeof(float));
 
-    uint32_t i = 0;
+    size_t chunkSize = 0;
     while(inStream->tellg() < size){
         std::array<uint8_t, 9> buff;
 
         inStream->read(reinterpret_cast<char*>(buff.data()), buff.size()); 
 
-        std::memcpy(&gcodeBuff[i], buff.data()+1, 8);
+        if(buff[0] == 0){
+            gcodeBuff.emplace_back(chunkSize);
+            chunkSize = 0;
+            continue;
+        }
 
-        i += 2;
+        chunkSize += 2;
+    }
+
+    inStream->seekg(0);
+
+    uint32_t i = 0;
+    uint32_t y = 0;
+    while(inStream->tellg() < size){
+        std::array<uint8_t, 9> buff;
+
+        inStream->read(reinterpret_cast<char*>(buff.data()), buff.size()); 
+
+        if(buff[0] == 0){
+            i++;
+            continue;
+        }
+
+        std::memcpy(&gcodeBuff[i][y], buff.data()+1, 8);
+
+        y += 2;
     }
 }
 
@@ -44,15 +68,18 @@ void BMPCreator::NormalizeCoordinates(){
     float maxX = 0;
     float maxY = 0;
 
-    for(uint32_t i = 0; i < gcodeBuff.size(); i += 2){
-        maxX = std::max(gcodeBuff[i], maxX);
-        maxY = std::max(gcodeBuff[i + i + 1], maxX);
+    for(uint32_t i = 0; i < gcodeBuff.size(); i++){
+        for(uint32_t y = 0; y < gcodeBuff[i].size(); y += 2){
+            maxX = std::max(gcodeBuff[i][y], maxX);
+            maxY = std::max(gcodeBuff[i][y+1], maxX);
+        }
     }
 
-    for(uint32_t i = 0; i < gcodeBuff.size(); i += 2){
-        gcodeBuff[i] /= maxX;
-        gcodeBuff[i+1] /= maxY;
-
+    for(uint32_t i = 0; i < gcodeBuff.size(); i++){
+        for(uint32_t y = 0; y < gcodeBuff[i].size(); y += 2){
+            gcodeBuff[i][y] /= maxX;
+            gcodeBuff[i][y + 1] /= maxY;
+        }
     }
 }
 

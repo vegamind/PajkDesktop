@@ -3,6 +3,9 @@
 #include <iostream>
 #include <memory>
 #include <vector>
+#include <cmath>
+
+#define POINT_DIST_TRESHOLD 0.2f
 
 class GCODEInterpreter{
 public:
@@ -28,6 +31,11 @@ private:
 
     std::string inputPath;
     std::string outputPath;
+
+    size_t lastGPos;
+
+    uint32_t lastX;
+    uint32_t lastY;
 
     float z;
 };

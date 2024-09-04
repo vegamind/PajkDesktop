@@ -1,7 +1,7 @@
 CMakeFiles/pajk.dir/src/bmpCreator.cpp.o: \
- /home/jakob/Documents/pajkDesktop/src/bmpCreator.cpp \
+ /home/jakob/Documents/PajkDesktop/src/bmpCreator.cpp \
  /usr/include/stdc-predef.h \
- /home/jakob/Documents/pajkDesktop/src/bmpCreator.hpp \
+ /home/jakob/Documents/PajkDesktop/src/bmpCreator.hpp \
  /usr/include/c++/13/fstream /usr/include/c++/13/bits/requires_hosted.h \
  /usr/include/x86_64-linux-gnu/c++/13/bits/c++config.h \
  /usr/include/x86_64-linux-gnu/c++/13/bits/os_defines.h \
@@ -158,8 +158,8 @@ CMakeFiles/pajk.dir/src/bmpCreator.cpp.o: \
  /usr/include/c++/13/bits/istream.tcc /usr/include/c++/13/bits/codecvt.h \
  /usr/include/x86_64-linux-gnu/c++/13/bits/basic_file.h \
  /usr/include/x86_64-linux-gnu/c++/13/bits/c++io.h \
- /usr/include/c++/13/bits/fstream.tcc /usr/include/c++/13/memory \
- /usr/include/c++/13/bits/stl_tempbuf.h \
+ /usr/include/c++/13/bits/fstream.tcc /usr/include/c++/13/iostream \
+ /usr/include/c++/13/memory /usr/include/c++/13/bits/stl_tempbuf.h \
  /usr/include/c++/13/bits/stl_uninitialized.h \
  /usr/include/c++/13/bits/stl_raw_storage_iter.h \
  /usr/include/c++/13/bits/align.h \
@@ -201,12 +201,14 @@ CMakeFiles/pajk.dir/src/bmpCreator.cpp.o: \
  /usr/include/c++/13/bits/ranges_uninitialized.h \
  /usr/include/c++/13/bits/ranges_algobase.h \
  /usr/include/c++/13/pstl/glue_memory_defs.h \
- /usr/include/c++/13/pstl/execution_defs.h /usr/include/c++/13/iostream \
- /usr/include/c++/13/vector /usr/include/c++/13/bits/stl_vector.h \
+ /usr/include/c++/13/pstl/execution_defs.h /usr/include/c++/13/vector \
+ /usr/include/c++/13/bits/stl_vector.h \
  /usr/include/c++/13/bits/stl_bvector.h \
  /usr/include/c++/13/bits/vector.tcc /usr/include/c++/13/array \
  /usr/include/c++/13/cstring /usr/include/string.h /usr/include/strings.h \
- /home/jakob/Documents/pajkDesktop/src/glRasterizer.hpp \
- /home/jakob/Documents/pajkDesktop/src/../glad/glad.h \
- /home/jakob/Documents/pajkDesktop/src/../glad/khrplatform.h \
+ /usr/include/c++/13/list /usr/include/c++/13/bits/stl_list.h \
+ /usr/include/c++/13/bits/list.tcc \
+ /home/jakob/Documents/PajkDesktop/src/glRasterizer.hpp \
+ /home/jakob/Documents/PajkDesktop/src/../glad/glad.h \
+ /home/jakob/Documents/PajkDesktop/src/../glad/khrplatform.h \
  /usr/include/GLFW/glfw3.h

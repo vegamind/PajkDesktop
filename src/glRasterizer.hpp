@@ -9,7 +9,7 @@
 
 class GLRasterizer{
 public:
-    GLRasterizer(std::vector<float>& data, uint32_t resX, uint32_t resY);
+    GLRasterizer(std::vector<std::vector<float>>& data, uint32_t resX, uint32_t resY);
     ~GLRasterizer();
 
     GLRasterizer(const GLRasterizer& other) = delete;
@@ -26,11 +26,11 @@ private:
 
     GLFWwindow* window;
 
-    GLuint VAO, VBO;
+    std::vector<GLuint> VAO, VBO;
     GLuint program;
 
     uint32_t resX;
     uint32_t resY;
     
-    std::vector<float>& data;
+    std::vector<std::vector<float>>& data;
 };

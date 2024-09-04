@@ -3,7 +3,8 @@
 #include <fstream>
 #include <exception>
 
-GCODEInterpreter::GCODEInterpreter(std::string inputPath, std::string outputPath): inputPath(inputPath), outputPath(outputPath), z(0){
+GCODEInterpreter::GCODEInterpreter(std::string inputPath, std::string outputPath): inputPath(inputPath), outputPath(outputPath),
+lastX(-1), lastY(-1), z(0){
     SetupStreams();
     ReadFile();
 }
@@ -54,6 +55,11 @@ void GCODEInterpreter::InterpretLine(std::string line){
 
         std::string substr = line.substr(i, substrEnd - i);
 
+        if(substr[0] == 'Z'){
+            InterpretLineSubstr(substr);
+            return;
+        }
+
         i = substrEnd + 1;
 
         substrs.push_back(substr);
@@ -63,18 +69,11 @@ void GCODEInterpreter::InterpretLine(std::string line){
 
     bool suitableFormat = false;
 
-    if(substrs.size() > 2){
-        if(substrs[0][0] == 'G' && substrs[1][0] == 'X' && substrs[2][0] == 'Y'){
-            suitableFormat = true;
-        }
-    }
-    else if(substrs.size() > 1){
-        if(substrs[0][0] == 'G' && substrs[1][0] == 'Z'){
-            suitableFormat = true;
-        }
+    if(substrs.size() < 2){
+        return;
     }
 
-    if(!suitableFormat){
+    if(!(substrs[0][0] == 'G' && substrs[1][0] == 'X' && substrs[2][0] == 'Y')){
         return;
     }
 
@@ -87,22 +86,20 @@ void GCODEInterpreter::InterpretLineSubstr(std::string substr){
     if(substr[0] == 'Z'){
         std::string numStr = substr.substr(1, substr.size()-1);
         z = std::stof(numStr);
-        std::cerr << z << "\n";
-    }
-
-    if(z < 0){
         return;
     }
+
+    //if(z > -2){//todo bruh
+    //    return;
+    //}
 
     if(substr[0] == 'G'){
         std::string numStr = substr.substr(1, substr.size()-1);
         uint32_t numI = std::stoi(numStr);
 
-        if(numI == 0){
-            char c = 0;
-            outStream->write(&c, 1);
-        }else if(numI == 1){
-            char c = 1;
+        if(numI == 0 || numI == 1){
+            char c = numI;
+            lastGPos = outStream->tellp();
             outStream->write(&c, 1);
         }else{
             std::cerr << "Warning some goofy ass not skibidy sigma ohio grimace shake baby gronk negaive -20000 aura beta instruction: " << substr << "\n";
@@ -112,7 +109,27 @@ void GCODEInterpreter::InterpretLineSubstr(std::string substr){
         std::string numStr = substr.substr(1, substr.size()-1);
         float numF = std::stof(numStr);
 
+
+        //if(substr[0] == 'X'){
+        //    if(fabsf(lastX-numF) > POINT_DIST_TRESHOLD && lastX != -1){
+        //        std::cerr << lastX << "\n";
+        //        outStream->seekp(lastGPos);
+        //    }
+
+        //    lastX = numF;
+        //}else{
+        //    if(fabsf(lastY-numF) > POINT_DIST_TRESHOLD && lastY != -1){
+        //        std::cerr << lastY << "\n";
+        //        outStream->seekp(lastGPos);
+        //    }
+
+        //    lastY = numF;
+        //}
+
+
         outStream->write(reinterpret_cast<char*>(&numF), sizeof(numF));
+
+
     }
 }
 

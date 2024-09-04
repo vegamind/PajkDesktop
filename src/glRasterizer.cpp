@@ -3,19 +3,23 @@
 const std::string vertexSRC = 
 "#version 460 core\n"
 "layout(location = 0) in vec2 aPos;\n"
+"layout(location = 1) out float vertexID;\n"
 "void main(){\n"
 "gl_Position = vec4(vec2(aPos.x*2-1, aPos.y*2-1), 0.0, 1.0);\n"
+"vertexID = gl_VertexID;"
 "}\n";
 
 const std::string fragSRC = 
 "#version 460 core\n"
 "layout(location = 0) out vec4 fragColor;\n"
+"layout(location = 1) in float vertexID;\n"
 "void main(){\n"
-"fragColor = vec4(1.0, 1.0, 1.0, 1.0);\n"
+"fragColor = vec4(vertexID, 0.0, 0.0, 1.0);\n"
 "}\n";
 
 
-GLRasterizer::GLRasterizer(std::vector<float>& data, uint32_t resX, uint32_t resY): resX(resX), resY(resY), data(data){
+GLRasterizer::GLRasterizer(std::vector<std::vector<float>>& data,
+ uint32_t resX, uint32_t resY): resX(resX), resY(resY), data(data){
     CreateContext();
     CreateBuffer();
     CompileShader();
@@ -53,16 +57,21 @@ void GLRasterizer::CreateContext(){
 }
 
 void GLRasterizer::CreateBuffer(){
-    glCreateVertexArrays(1, &VAO);
-    glBindVertexArray(VAO);
+    VAO.resize(data.size());
+    VBO.resize(data.size());
 
-    glCreateBuffers(1, &VBO);
-    glBindBuffer(GL_ARRAY_BUFFER, VBO);
+    for(uint32_t i = 0; i < data.size(); i++){
+        glCreateVertexArrays(1, &VAO[i]);
+        glBindVertexArray(VAO[i]);
 
-    glBufferData(GL_ARRAY_BUFFER, data.size() * sizeof(float), data.data(), GL_STATIC_DRAW);
-    glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, 0, 0);
+        glCreateBuffers(1, &VBO[i]);
+        glBindBuffer(GL_ARRAY_BUFFER, VBO[i]);
 
-    glEnableVertexAttribArray(0);
+        glBufferData(GL_ARRAY_BUFFER, data.size() * sizeof(float), data.data(), GL_STATIC_DRAW);
+        glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, 0, 0);
+
+        glEnableVertexAttribArray(0);
+    }
 }
 
 void GLRasterizer::CompileShader(){
@@ -90,14 +99,17 @@ void GLRasterizer::CompileShader(){
 }
 
 void GLRasterizer::DrawShape(){
-    glBindVertexArray(VAO);
+
     glUseProgram(program);
+    for(uint32_t i = 0; i < data.size(); i++){
 
+        glBindVertexArray(VAO[i]);
 
-    while(!glfwWindowShouldClose(window)){
-        glfwPollEvents();
-        glDrawArrays(GL_LINE_STRIP_ADJACENCY, 0, data.size());
-        glfwSwapBuffers(window);
+        while(!glfwWindowShouldClose(window)){
+            glfwPollEvents();
+            glDrawArrays(GL_LINES_ADJACENCY, 0, data.size());
+            glfwSwapBuffers(window);
+        }
     }
     
 }
