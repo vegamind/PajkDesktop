@@ -53,10 +53,10 @@ RM = /usr/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/jakob/Documents/PajkDesktop
+CMAKE_SOURCE_DIR = /home/jakob/Documents/pajkDesktop
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/jakob/Documents/PajkDesktop
+CMAKE_BINARY_DIR = /home/jakob/Documents/pajkDesktop
 
 # Include any dependencies generated for this target.
 include CMakeFiles/pajk.dir/depend.make
@@ -72,72 +72,72 @@ include CMakeFiles/pajk.dir/flags.make
 CMakeFiles/pajk.dir/glad/glad.c.o: CMakeFiles/pajk.dir/flags.make
 CMakeFiles/pajk.dir/glad/glad.c.o: glad/glad.c
 CMakeFiles/pajk.dir/glad/glad.c.o: CMakeFiles/pajk.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/jakob/Documents/PajkDesktop/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building C object CMakeFiles/pajk.dir/glad/glad.c.o"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/pajk.dir/glad/glad.c.o -MF CMakeFiles/pajk.dir/glad/glad.c.o.d -o CMakeFiles/pajk.dir/glad/glad.c.o -c /home/jakob/Documents/PajkDesktop/glad/glad.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/jakob/Documents/pajkDesktop/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building C object CMakeFiles/pajk.dir/glad/glad.c.o"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/pajk.dir/glad/glad.c.o -MF CMakeFiles/pajk.dir/glad/glad.c.o.d -o CMakeFiles/pajk.dir/glad/glad.c.o -c /home/jakob/Documents/pajkDesktop/glad/glad.c
 
 CMakeFiles/pajk.dir/glad/glad.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing C source to CMakeFiles/pajk.dir/glad/glad.c.i"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/jakob/Documents/PajkDesktop/glad/glad.c > CMakeFiles/pajk.dir/glad/glad.c.i
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/jakob/Documents/pajkDesktop/glad/glad.c > CMakeFiles/pajk.dir/glad/glad.c.i
 
 CMakeFiles/pajk.dir/glad/glad.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling C source to assembly CMakeFiles/pajk.dir/glad/glad.c.s"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/jakob/Documents/PajkDesktop/glad/glad.c -o CMakeFiles/pajk.dir/glad/glad.c.s
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/jakob/Documents/pajkDesktop/glad/glad.c -o CMakeFiles/pajk.dir/glad/glad.c.s
 
 CMakeFiles/pajk.dir/src/bmpCreator.cpp.o: CMakeFiles/pajk.dir/flags.make
 CMakeFiles/pajk.dir/src/bmpCreator.cpp.o: src/bmpCreator.cpp
 CMakeFiles/pajk.dir/src/bmpCreator.cpp.o: CMakeFiles/pajk.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/jakob/Documents/PajkDesktop/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/pajk.dir/src/bmpCreator.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/pajk.dir/src/bmpCreator.cpp.o -MF CMakeFiles/pajk.dir/src/bmpCreator.cpp.o.d -o CMakeFiles/pajk.dir/src/bmpCreator.cpp.o -c /home/jakob/Documents/PajkDesktop/src/bmpCreator.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/jakob/Documents/pajkDesktop/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/pajk.dir/src/bmpCreator.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/pajk.dir/src/bmpCreator.cpp.o -MF CMakeFiles/pajk.dir/src/bmpCreator.cpp.o.d -o CMakeFiles/pajk.dir/src/bmpCreator.cpp.o -c /home/jakob/Documents/pajkDesktop/src/bmpCreator.cpp
 
 CMakeFiles/pajk.dir/src/bmpCreator.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/pajk.dir/src/bmpCreator.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/jakob/Documents/PajkDesktop/src/bmpCreator.cpp > CMakeFiles/pajk.dir/src/bmpCreator.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/jakob/Documents/pajkDesktop/src/bmpCreator.cpp > CMakeFiles/pajk.dir/src/bmpCreator.cpp.i
 
 CMakeFiles/pajk.dir/src/bmpCreator.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/pajk.dir/src/bmpCreator.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/jakob/Documents/PajkDesktop/src/bmpCreator.cpp -o CMakeFiles/pajk.dir/src/bmpCreator.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/jakob/Documents/pajkDesktop/src/bmpCreator.cpp -o CMakeFiles/pajk.dir/src/bmpCreator.cpp.s
 
 CMakeFiles/pajk.dir/src/gcodeInterpreter.cpp.o: CMakeFiles/pajk.dir/flags.make
 CMakeFiles/pajk.dir/src/gcodeInterpreter.cpp.o: src/gcodeInterpreter.cpp
 CMakeFiles/pajk.dir/src/gcodeInterpreter.cpp.o: CMakeFiles/pajk.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/jakob/Documents/PajkDesktop/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/pajk.dir/src/gcodeInterpreter.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/pajk.dir/src/gcodeInterpreter.cpp.o -MF CMakeFiles/pajk.dir/src/gcodeInterpreter.cpp.o.d -o CMakeFiles/pajk.dir/src/gcodeInterpreter.cpp.o -c /home/jakob/Documents/PajkDesktop/src/gcodeInterpreter.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/jakob/Documents/pajkDesktop/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/pajk.dir/src/gcodeInterpreter.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/pajk.dir/src/gcodeInterpreter.cpp.o -MF CMakeFiles/pajk.dir/src/gcodeInterpreter.cpp.o.d -o CMakeFiles/pajk.dir/src/gcodeInterpreter.cpp.o -c /home/jakob/Documents/pajkDesktop/src/gcodeInterpreter.cpp
 
 CMakeFiles/pajk.dir/src/gcodeInterpreter.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/pajk.dir/src/gcodeInterpreter.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/jakob/Documents/PajkDesktop/src/gcodeInterpreter.cpp > CMakeFiles/pajk.dir/src/gcodeInterpreter.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/jakob/Documents/pajkDesktop/src/gcodeInterpreter.cpp > CMakeFiles/pajk.dir/src/gcodeInterpreter.cpp.i
 
 CMakeFiles/pajk.dir/src/gcodeInterpreter.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/pajk.dir/src/gcodeInterpreter.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/jakob/Documents/PajkDesktop/src/gcodeInterpreter.cpp -o CMakeFiles/pajk.dir/src/gcodeInterpreter.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/jakob/Documents/pajkDesktop/src/gcodeInterpreter.cpp -o CMakeFiles/pajk.dir/src/gcodeInterpreter.cpp.s
 
 CMakeFiles/pajk.dir/src/glRasterizer.cpp.o: CMakeFiles/pajk.dir/flags.make
 CMakeFiles/pajk.dir/src/glRasterizer.cpp.o: src/glRasterizer.cpp
 CMakeFiles/pajk.dir/src/glRasterizer.cpp.o: CMakeFiles/pajk.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/jakob/Documents/PajkDesktop/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/pajk.dir/src/glRasterizer.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/pajk.dir/src/glRasterizer.cpp.o -MF CMakeFiles/pajk.dir/src/glRasterizer.cpp.o.d -o CMakeFiles/pajk.dir/src/glRasterizer.cpp.o -c /home/jakob/Documents/PajkDesktop/src/glRasterizer.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/jakob/Documents/pajkDesktop/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/pajk.dir/src/glRasterizer.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/pajk.dir/src/glRasterizer.cpp.o -MF CMakeFiles/pajk.dir/src/glRasterizer.cpp.o.d -o CMakeFiles/pajk.dir/src/glRasterizer.cpp.o -c /home/jakob/Documents/pajkDesktop/src/glRasterizer.cpp
 
 CMakeFiles/pajk.dir/src/glRasterizer.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/pajk.dir/src/glRasterizer.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/jakob/Documents/PajkDesktop/src/glRasterizer.cpp > CMakeFiles/pajk.dir/src/glRasterizer.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/jakob/Documents/pajkDesktop/src/glRasterizer.cpp > CMakeFiles/pajk.dir/src/glRasterizer.cpp.i
 
 CMakeFiles/pajk.dir/src/glRasterizer.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/pajk.dir/src/glRasterizer.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/jakob/Documents/PajkDesktop/src/glRasterizer.cpp -o CMakeFiles/pajk.dir/src/glRasterizer.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/jakob/Documents/pajkDesktop/src/glRasterizer.cpp -o CMakeFiles/pajk.dir/src/glRasterizer.cpp.s
 
 CMakeFiles/pajk.dir/src/main.cpp.o: CMakeFiles/pajk.dir/flags.make
 CMakeFiles/pajk.dir/src/main.cpp.o: src/main.cpp
 CMakeFiles/pajk.dir/src/main.cpp.o: CMakeFiles/pajk.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/jakob/Documents/PajkDesktop/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/pajk.dir/src/main.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/pajk.dir/src/main.cpp.o -MF CMakeFiles/pajk.dir/src/main.cpp.o.d -o CMakeFiles/pajk.dir/src/main.cpp.o -c /home/jakob/Documents/PajkDesktop/src/main.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/jakob/Documents/pajkDesktop/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/pajk.dir/src/main.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/pajk.dir/src/main.cpp.o -MF CMakeFiles/pajk.dir/src/main.cpp.o.d -o CMakeFiles/pajk.dir/src/main.cpp.o -c /home/jakob/Documents/pajkDesktop/src/main.cpp
 
 CMakeFiles/pajk.dir/src/main.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/pajk.dir/src/main.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/jakob/Documents/PajkDesktop/src/main.cpp > CMakeFiles/pajk.dir/src/main.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/jakob/Documents/pajkDesktop/src/main.cpp > CMakeFiles/pajk.dir/src/main.cpp.i
 
 CMakeFiles/pajk.dir/src/main.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/pajk.dir/src/main.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/jakob/Documents/PajkDesktop/src/main.cpp -o CMakeFiles/pajk.dir/src/main.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/jakob/Documents/pajkDesktop/src/main.cpp -o CMakeFiles/pajk.dir/src/main.cpp.s
 
 # Object files for target pajk
 pajk_OBJECTS = \
@@ -157,7 +157,7 @@ pajk: CMakeFiles/pajk.dir/src/glRasterizer.cpp.o
 pajk: CMakeFiles/pajk.dir/src/main.cpp.o
 pajk: CMakeFiles/pajk.dir/build.make
 pajk: CMakeFiles/pajk.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/home/jakob/Documents/PajkDesktop/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Linking CXX executable pajk"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/home/jakob/Documents/pajkDesktop/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Linking CXX executable pajk"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/pajk.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
@@ -169,6 +169,6 @@ CMakeFiles/pajk.dir/clean:
 .PHONY : CMakeFiles/pajk.dir/clean
 
 CMakeFiles/pajk.dir/depend:
-	cd /home/jakob/Documents/PajkDesktop && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/jakob/Documents/PajkDesktop /home/jakob/Documents/PajkDesktop /home/jakob/Documents/PajkDesktop /home/jakob/Documents/PajkDesktop /home/jakob/Documents/PajkDesktop/CMakeFiles/pajk.dir/DependInfo.cmake "--color=$(COLOR)"
+	cd /home/jakob/Documents/pajkDesktop && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/jakob/Documents/pajkDesktop /home/jakob/Documents/pajkDesktop /home/jakob/Documents/pajkDesktop /home/jakob/Documents/pajkDesktop /home/jakob/Documents/pajkDesktop/CMakeFiles/pajk.dir/DependInfo.cmake "--color=$(COLOR)"
 .PHONY : CMakeFiles/pajk.dir/depend
 

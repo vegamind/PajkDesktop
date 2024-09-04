@@ -14,7 +14,7 @@ const std::string fragSRC =
 "layout(location = 0) out vec4 fragColor;\n"
 "layout(location = 1) in float vertexID;\n"
 "void main(){\n"
-"fragColor = vec4(vertexID, 0.0, 0.0, 1.0);\n"
+"fragColor = vec4(1.0, 0.0, 0.0, 1.0);\n"
 "}\n";
 
 
@@ -41,7 +41,7 @@ void GLRasterizer::CreateContext(){
     glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 //    glfwWindowHint(GLFW_VISIBLE, GLFW_FALSE);
 
-    window = glfwCreateWindow(resX, resY, "", nullptr, nullptr);
+    window = glfwCreateWindow(1280, 720, "", nullptr, nullptr);
 
     if(window == nullptr){
         throw std::runtime_error("Failed to create as GLFW window");
@@ -61,6 +61,10 @@ void GLRasterizer::CreateBuffer(){
     VBO.resize(data.size());
 
     for(uint32_t i = 0; i < data.size(); i++){
+        if(data[i].empty()){
+            continue;
+        }
+
         glCreateVertexArrays(1, &VAO[i]);
         glBindVertexArray(VAO[i]);
 
@@ -71,6 +75,7 @@ void GLRasterizer::CreateBuffer(){
         glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, 0, 0);
 
         glEnableVertexAttribArray(0);
+
     }
 }
 
@@ -95,21 +100,25 @@ void GLRasterizer::CompileShader(){
 
 
     glLinkProgram(program);
-    glGetProgramiv(program, GL_LINK_STATUS, &success);
 }
 
 void GLRasterizer::DrawShape(){
 
     glUseProgram(program);
-    for(uint32_t i = 0; i < data.size(); i++){
 
-        glBindVertexArray(VAO[i]);
+    while(!glfwWindowShouldClose(window)){
+        glfwPollEvents();
 
-        while(!glfwWindowShouldClose(window)){
-            glfwPollEvents();
-            glDrawArrays(GL_LINES_ADJACENCY, 0, data.size());
-            glfwSwapBuffers(window);
+        for(uint32_t i = 0; i < data.size(); i++){
+            if(data[i].empty()){
+                continue;
+            }
+
+            glBindVertexArray(VAO[i]);
+            glDrawArrays(GL_LINE_LOOP, 0, data[i].size());
         }
+
+        glfwSwapBuffers(window);
     }
     
 }
