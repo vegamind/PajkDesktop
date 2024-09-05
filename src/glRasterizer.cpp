@@ -4,8 +4,11 @@ const std::string vertexSRC =
 "#version 460 core\n"
 "layout(location = 0) in vec2 aPos;\n"
 "layout(location = 1) out float vertexID;\n"
+"uniform vec2 lastVert;"
 "void main(){\n"
-"gl_Position = vec4(vec2(aPos.x*2-1, aPos.y*2-1), 0.0, 1.0);\n"
+"vec2 pos = vec2(aPos.x*2-1, aPos.y*2-1);\n"
+"if(pos.x == -1 && pos.y == -1){gl_Position = vec4(lastVert, 0.0, 1.0);return;}\n"
+"gl_Position = vec4(pos, 0.0, 1.0);\n"
 "vertexID = gl_VertexID;"
 "}\n";
 
@@ -54,9 +57,11 @@ void GLRasterizer::CreateContext(){
     }
 
     glViewport(0, 0, resX, resY);
+    glEnable(GL_VERTEX_PROGRAM_POINT_SIZE);
 }
 
 void GLRasterizer::CreateBuffer(){
+
     VAO.resize(data.size());
     VBO.resize(data.size());
 
@@ -65,13 +70,17 @@ void GLRasterizer::CreateBuffer(){
             continue;
         }
 
+        if(data.size() % 2 != 0){
+            data.push_back(data[data.size()-1]);
+        }
+
         glCreateVertexArrays(1, &VAO[i]);
         glBindVertexArray(VAO[i]);
 
         glCreateBuffers(1, &VBO[i]);
         glBindBuffer(GL_ARRAY_BUFFER, VBO[i]);
 
-        glBufferData(GL_ARRAY_BUFFER, data.size() * sizeof(float), data.data(), GL_STATIC_DRAW);
+        glBufferData(GL_ARRAY_BUFFER, data[i].size() * sizeof(float), data[i].data(), GL_STATIC_DRAW);
         glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, 0, 0);
 
         glEnableVertexAttribArray(0);
@@ -87,6 +96,9 @@ void GLRasterizer::CompileShader(){
     GLuint vertShader = glCreateShader(GL_VERTEX_SHADER);
     glShaderSource(vertShader, 1, &vertCSrc, NULL);
     glCompileShader(vertShader);
+    char infoLog[512];
+    glGetShaderInfoLog(vertShader, 512, nullptr, infoLog);
+    std::cerr << infoLog << "\n";
 
 
     GLuint fragShader = glCreateShader(GL_FRAGMENT_SHADER);
@@ -114,8 +126,10 @@ void GLRasterizer::DrawShape(){
                 continue;
             }
 
+            glUniform2fv(glGetUniformLocation(program, "lastVert"), 1, &data[i][data.size()-2]);
+
             glBindVertexArray(VAO[i]);
-            glDrawArrays(GL_LINE_LOOP, 0, data[i].size());
+            glDrawArrays(GL_LINE_STRIP, 0, data[i].size());
         }
 
         glfwSwapBuffers(window);

@@ -10,7 +10,7 @@ BMPCreator::BMPCreator(std::string in, std::string out, uint32_t xRes, uint32_t 
 }
 
 void BMPCreator::SetupStreams(){
-    inStream = std::make_shared<std::fstream>(inputPath, inStream->in | inStream->ate);
+    inStream = std::make_shared<std::fstream>(inputPath, inStream->in | inStream->binary | inStream->ate);
 
     if(!inStream->is_open()){
         throw std::runtime_error("Failed to open file for reading " + inputPath);
@@ -26,6 +26,9 @@ void BMPCreator::SetupStreams(){
  
 void BMPCreator::ReadGCODEData(){
     size_t size = inStream->tellg();
+
+    inStream->seekg( 0, std::ios::end ); 
+
     inStream->seekg(0);
 
 
@@ -67,6 +70,14 @@ void BMPCreator::ReadGCODEData(){
 
         y += 2;
     }
+
+    for(std::vector<float>& v : gcodeBuff){
+        for(float f : v){
+            if(f == 0){
+                std::cerr << f << "\n";
+            }
+        }
+    }
 }
 
 void BMPCreator::NormalizeCoordinates(){
@@ -82,7 +93,6 @@ void BMPCreator::NormalizeCoordinates(){
 
     for(uint32_t i = 0; i < gcodeBuff.size(); i++){
         for(uint32_t y = 0; y < gcodeBuff[i].size(); y += 2){
-            std::cerr << gcodeBuff[i][y] << " " << gcodeBuff[i][y + 1] << "\n";
             gcodeBuff[i][y] /= maxX;
             gcodeBuff[i][y + 1] /= maxY;
         }

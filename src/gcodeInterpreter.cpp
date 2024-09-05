@@ -41,6 +41,7 @@ void GCODEInterpreter::ReadFile(){
             InterpretLine(line);
         }
     }
+    std::flush(*outStream);//just in case idk
 }
 
 void GCODEInterpreter::InterpretLine(std::string line){
@@ -134,7 +135,6 @@ void GCODEInterpreter::InterpretLineSubstr(std::string substr){
 }
 
 GCODEInterpreter::~GCODEInterpreter(){
-    std::flush(*outStream);//just in case idk
 
     inStream->close();
     outStream->close();

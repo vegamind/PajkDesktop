@@ -55,6 +55,11 @@
         "typeinfo": "cpp",
         "variant": "cpp",
         "text_encoding": "cpp",
-        "list": "cpp"
+        "list": "cpp",
+        "map": "cpp",
+        "source_location": "cpp",
+        "iomanip": "cpp",
+        "ranges": "cpp",
+        "stdfloat": "cpp"
     }
 }

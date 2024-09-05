@@ -1,7 +1,7 @@
 CMakeFiles/pajk.dir/src/main.cpp.o: \
- /home/jakob/Documents/pajkDesktop/src/main.cpp \
+ /home/jakob/Documents/PajkDesktop/src/main.cpp \
  /usr/include/stdc-predef.h \
- /home/jakob/Documents/pajkDesktop/src/gcodeInterpreter.hpp \
+ /home/jakob/Documents/PajkDesktop/src/gcodeInterpreter.hpp \
  /usr/include/c++/13/iostream /usr/include/c++/13/bits/requires_hosted.h \
  /usr/include/x86_64-linux-gnu/c++/13/bits/c++config.h \
  /usr/include/x86_64-linux-gnu/c++/13/bits/os_defines.h \
@@ -224,7 +224,7 @@ CMakeFiles/pajk.dir/src/main.cpp.o: \
  /usr/include/c++/13/tr1/poly_hermite.tcc \
  /usr/include/c++/13/tr1/poly_laguerre.tcc \
  /usr/include/c++/13/tr1/riemann_zeta.tcc \
- /home/jakob/Documents/pajkDesktop/src/bmpCreator.hpp \
+ /home/jakob/Documents/PajkDesktop/src/bmpCreator.hpp \
  /usr/include/c++/13/fstream /usr/include/c++/13/bits/codecvt.h \
  /usr/include/x86_64-linux-gnu/c++/13/bits/basic_file.h \
  /usr/include/x86_64-linux-gnu/c++/13/bits/c++io.h \
@@ -232,7 +232,8 @@ CMakeFiles/pajk.dir/src/main.cpp.o: \
  /usr/include/c++/13/cstring /usr/include/string.h /usr/include/strings.h \
  /usr/include/c++/13/list /usr/include/c++/13/bits/stl_list.h \
  /usr/include/c++/13/bits/list.tcc \
- /home/jakob/Documents/pajkDesktop/src/glRasterizer.hpp \
- /home/jakob/Documents/pajkDesktop/src/../glad/glad.h \
- /home/jakob/Documents/pajkDesktop/src/../glad/khrplatform.h \
+ /home/jakob/Documents/PajkDesktop/src/glRasterizer.hpp \
+ /usr/include/c++/13/stdfloat \
+ /home/jakob/Documents/PajkDesktop/src/../glad/glad.h \
+ /home/jakob/Documents/PajkDesktop/src/../glad/khrplatform.h \
  /usr/include/GLFW/glfw3.h

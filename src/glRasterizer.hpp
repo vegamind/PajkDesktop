@@ -3,6 +3,7 @@
 #include <vector>
 #include <stdexcept>
 #include <iostream>
+#include <stdfloat>
 
 #include "../glad/glad.h"
 #include <GLFW/glfw3.h>
