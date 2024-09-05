@@ -4,11 +4,8 @@ const std::string vertexSRC =
 "#version 460 core\n"
 "layout(location = 0) in vec2 aPos;\n"
 "layout(location = 1) out float vertexID;\n"
-"uniform vec2 lastVert;"
 "void main(){\n"
-"vec2 pos = vec2(aPos.x*2-1, aPos.y*2-1);\n"
-"if(pos.x == -1 && pos.y == -1){gl_Position = vec4(lastVert, 0.0, 1.0);return;}\n"
-"gl_Position = vec4(pos, 0.0, 1.0);\n"
+"gl_Position = vec4(vec2(aPos.x*2-1, aPos.y*2-1), 0.0, 1.0);\n"
 "vertexID = gl_VertexID;"
 "}\n";
 
@@ -42,7 +39,7 @@ void GLRasterizer::CreateContext(){
     glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);
     glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 6);
     glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
-//    glfwWindowHint(GLFW_VISIBLE, GLFW_FALSE);
+    glfwWindowHint(GLFW_VISIBLE, GLFW_FALSE);
 
     window = glfwCreateWindow(1280, 720, "", nullptr, nullptr);
 
@@ -57,21 +54,15 @@ void GLRasterizer::CreateContext(){
     }
 
     glViewport(0, 0, resX, resY);
-    glEnable(GL_VERTEX_PROGRAM_POINT_SIZE);
 }
 
 void GLRasterizer::CreateBuffer(){
-
     VAO.resize(data.size());
     VBO.resize(data.size());
 
     for(uint32_t i = 0; i < data.size(); i++){
         if(data[i].empty()){
             continue;
-        }
-
-        if(data.size() % 2 != 0){
-            data.push_back(data[data.size()-1]);
         }
 
         glCreateVertexArrays(1, &VAO[i]);
@@ -96,9 +87,6 @@ void GLRasterizer::CompileShader(){
     GLuint vertShader = glCreateShader(GL_VERTEX_SHADER);
     glShaderSource(vertShader, 1, &vertCSrc, NULL);
     glCompileShader(vertShader);
-    char infoLog[512];
-    glGetShaderInfoLog(vertShader, 512, nullptr, infoLog);
-    std::cerr << infoLog << "\n";
 
 
     GLuint fragShader = glCreateShader(GL_FRAGMENT_SHADER);
@@ -118,27 +106,24 @@ void GLRasterizer::DrawShape(){
 
     glUseProgram(program);
 
-    while(!glfwWindowShouldClose(window)){
-        glfwPollEvents();
-
-        for(uint32_t i = 0; i < data.size(); i++){
-            if(data[i].empty()){
-                continue;
-            }
-
-            glUniform2fv(glGetUniformLocation(program, "lastVert"), 1, &data[i][data.size()-2]);
-
-            glBindVertexArray(VAO[i]);
-            glDrawArrays(GL_LINE_STRIP, 0, data[i].size());
+    for(uint32_t i = 0; i < data.size(); i++){
+        if(data[i].empty()){
+            continue;
         }
 
-        glfwSwapBuffers(window);
+        glBindVertexArray(VAO[i]);
+        glDrawArrays(GL_LINE_LOOP, 0, data[i].size()/2);
     }
-    
+
+    glfwSwapBuffers(window);
 }
 
 void GLRasterizer::ReadPixels(){
-    std::vector<uint8_t> pixels(resX * resY * 4);
+    pixels.resize(resX * resY * 4);
 
     glReadPixels(0, 0, resX, resY, GL_RGBA, GL_UNSIGNED_BYTE, pixels.data());
+}
+
+std::vector<uint8_t>& GLRasterizer::GetPixelData(){
+    return pixels;
 }

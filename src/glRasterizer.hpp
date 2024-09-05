@@ -3,7 +3,6 @@
 #include <vector>
 #include <stdexcept>
 #include <iostream>
-#include <stdfloat>
 
 #include "../glad/glad.h"
 #include <GLFW/glfw3.h>
@@ -17,6 +16,8 @@ public:
     GLRasterizer& operator=(const GLRasterizer& other) = delete;
     GLRasterizer(const GLRasterizer&& other) = delete;
     GLRasterizer& operator=(const GLRasterizer&& other) = delete;
+
+    std::vector<uint8_t>& GetPixelData();
 
 private:
     void CreateContext();
@@ -34,4 +35,5 @@ private:
     uint32_t resY;
     
     std::vector<std::vector<float>>& data;
+    std::vector<uint8_t> pixels;
 };

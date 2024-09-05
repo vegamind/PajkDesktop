@@ -11,6 +11,9 @@
 
 #include "glRasterizer.hpp"
 
+#define DISPLAY_X (uint32_t)128
+#define DISPLAY_Y (uint32_t)128
+
 class BMPCreator{
 public:
     BMPCreator(std::string in, std::string out, uint32_t xRes, uint32_t yRes);
@@ -25,6 +28,7 @@ private:
     void SetupStreams();
     void ReadGCODEData();
     void NormalizeCoordinates();
+    void WriteBMP();
 
     std::shared_ptr<std::fstream> inStream;
     std::shared_ptr<std::ofstream> outStream;

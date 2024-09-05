@@ -6,11 +6,13 @@ BMPCreator::BMPCreator(std::string in, std::string out, uint32_t xRes, uint32_t 
     ReadGCODEData();
     NormalizeCoordinates();
 
-    rasterizer.reset(new GLRasterizer(gcodeBuff, xRes, yRes));
+    rasterizer.reset(new GLRasterizer(gcodeBuff, DISPLAY_X, DISPLAY_Y));
+
+    WriteBMP();
 }
 
 void BMPCreator::SetupStreams(){
-    inStream = std::make_shared<std::fstream>(inputPath, inStream->in | inStream->binary | inStream->ate);
+    inStream = std::make_shared<std::fstream>(inputPath, inStream->in | inStream->ate);
 
     if(!inStream->is_open()){
         throw std::runtime_error("Failed to open file for reading " + inputPath);
@@ -22,13 +24,8 @@ void BMPCreator::SetupStreams(){
     }
 }
  
- 
- 
 void BMPCreator::ReadGCODEData(){
     size_t size = inStream->tellg();
-
-    inStream->seekg( 0, std::ios::end ); 
-
     inStream->seekg(0);
 
 
@@ -70,14 +67,6 @@ void BMPCreator::ReadGCODEData(){
 
         y += 2;
     }
-
-    for(std::vector<float>& v : gcodeBuff){
-        for(float f : v){
-            if(f == 0){
-                std::cerr << f << "\n";
-            }
-        }
-    }
 }
 
 void BMPCreator::NormalizeCoordinates(){
@@ -97,6 +86,14 @@ void BMPCreator::NormalizeCoordinates(){
             gcodeBuff[i][y + 1] /= maxY;
         }
     }
+}
+
+void BMPCreator::WriteBMP(){
+    std::array<uint32_t, 2> displayRes = {DISPLAY_X, DISPLAY_Y}; 
+    std::vector<uint8_t>& pixels = rasterizer->GetPixelData();
+
+    outStream->write(reinterpret_cast<char*>(displayRes.data()), displayRes.size() * sizeof(displayRes));
+    outStream->write(reinterpret_cast<char*>(pixels.data()), pixels.size() * sizeof(uint8_t));
 }
 
 BMPCreator::~BMPCreator(){
