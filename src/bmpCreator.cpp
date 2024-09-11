@@ -1,6 +1,11 @@
 #include "bmpCreator.hpp"
 
 
+const float TOPLEFT_BORDER[2] {-1, 10};
+const float TOPRIGHT_BORDER[2] {5, 10};
+const float BOTTOMLEFT_BORDER[2] {-1, 4};
+const float BOTTOMRIGHT_BORDER[2] {5, 4};
+
 BMPGCODECreator::BMPGCODECreator(std::string out, uint32_t xRes, uint32_t yRes): inputPath("tmp.bin"), outputName(out), xRes(xRes), yRes(yRes){
     SetupStreams();
     ReadGCODEData();
@@ -106,14 +111,15 @@ void BMPGCODECreator::WriteGCODE(){
     uint32_t factor = pow(10, FLOAT_PRECISION);
 
     for(std::vector<float>& buff : gcodeBuff){
-        std::vector<uint32_t> writeBuff;
-        writeBuff.reserve(buff.size());
-        
-        for(float& f : buff){
-            writeBuff.push_back(floor(f * factor));
+        for(int i = 0; i < buff.size(); i += 2){
+            buff[i] *= abs(TOPLEFT_BORDER[0]) + abs(TOPRIGHT_BORDER[0]);
+            buff[i] +=  TOPLEFT_BORDER[0];
+
+            buff[i+1] *= abs(TOPLEFT_BORDER[1]) + abs(BOTTOMLEFT_BORDER[1]);
+            buff[i+1] += BOTTOMLEFT_BORDER[1];
         }
 
-        gcodeStream->write(reinterpret_cast<char*>(writeBuff.data()), writeBuff.size() * sizeof(uint32_t));
+        gcodeStream->write(reinterpret_cast<char*>(buff.data()), buff.size() * sizeof(float));
     }
 }
 
