@@ -1,7 +1,7 @@
 #include "bmpCreator.hpp"
 
 
-BMPCreator::BMPCreator(std::string in, std::string out, uint32_t xRes, uint32_t yRes): inputPath(in), outputPath(out), xRes(xRes), yRes(yRes){
+BMPGCODECreator::BMPGCODECreator(std::string out, uint32_t xRes, uint32_t yRes): inputPath("tmp.bin"), outputName(out), xRes(xRes), yRes(yRes){
     SetupStreams();
     ReadGCODEData();
     NormalizeCoordinates();
@@ -9,22 +9,28 @@ BMPCreator::BMPCreator(std::string in, std::string out, uint32_t xRes, uint32_t 
     rasterizer.reset(new GLRasterizer(gcodeBuff, DISPLAY_X, DISPLAY_Y));
 
     WriteBMP();
+    WriteGCODE();
 }
 
-void BMPCreator::SetupStreams(){
+void BMPGCODECreator::SetupStreams(){
     inStream = std::make_shared<std::fstream>(inputPath, inStream->in | inStream->ate);
 
     if(!inStream->is_open()){
         throw std::runtime_error("Failed to open file for reading " + inputPath);
     }
 
-    outStream = std::make_shared<std::ofstream>(outputPath);
-    if(!outStream->is_open()){
+    bmpStream = std::make_shared<std::ofstream>(outputName + ".bmp");
+    if(!bmpStream->is_open()){
+        throw std::runtime_error("Failed to create or truncate a file for writing " + inputPath);
+    }
+
+    gcodeStream = std::make_shared<std::ofstream>(outputName + ".pajk");
+    if(!gcodeStream->is_open()){
         throw std::runtime_error("Failed to create or truncate a file for writing " + inputPath);
     }
 }
  
-void BMPCreator::ReadGCODEData(){
+void BMPGCODECreator::ReadGCODEData(){
     size_t size = inStream->tellg();
     inStream->seekg(0);
 
@@ -69,7 +75,7 @@ void BMPCreator::ReadGCODEData(){
     }
 }
 
-void BMPCreator::NormalizeCoordinates(){
+void BMPGCODECreator::NormalizeCoordinates(){
     float maxX = 0;
     float maxY = 0;
 
@@ -88,17 +94,24 @@ void BMPCreator::NormalizeCoordinates(){
     }
 }
 
-void BMPCreator::WriteBMP(){
+void BMPGCODECreator::WriteBMP(){
     std::array<uint32_t, 2> displayRes = {DISPLAY_X, DISPLAY_Y}; 
-    std::vector<uint8_t>& pixels = rasterizer->GetPixelData();
+    std::vector<uint16_t>& pixels = rasterizer->GetPixelData();
 
-    outStream->write(reinterpret_cast<char*>(displayRes.data()), displayRes.size() * sizeof(displayRes));
-    outStream->write(reinterpret_cast<char*>(pixels.data()), pixels.size() * sizeof(uint8_t));
+    bmpStream->write(reinterpret_cast<char*>(pixels.data()), pixels.size() * sizeof(uint16_t));
 }
 
-BMPCreator::~BMPCreator(){
-    std::flush(*outStream);    
+void BMPGCODECreator::WriteGCODE(){
+    for(std::vector<float>& buff : gcodeBuff){
+        gcodeStream->write(reinterpret_cast<char*>(buff.data()), buff.size() * sizeof(float));
+    }
+}
+
+BMPGCODECreator::~BMPGCODECreator(){
+    std::flush(*bmpStream);    
+
 
     inStream->close();
-    outStream->close();
+    gcodeStream->close();
+    bmpStream->close();
 }

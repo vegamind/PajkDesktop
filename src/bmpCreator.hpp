@@ -11,30 +11,32 @@
 
 #include "glRasterizer.hpp"
 
-#define DISPLAY_X (uint32_t)128
+#define DISPLAY_X (uint32_t)160
 #define DISPLAY_Y (uint32_t)128
 
-class BMPCreator{
+class BMPGCODECreator{
 public:
-    BMPCreator(std::string in, std::string out, uint32_t xRes, uint32_t yRes);
-    ~BMPCreator();
+    BMPGCODECreator(std::string out, uint32_t xRes, uint32_t yRes);
+    ~BMPGCODECreator();
 
-    BMPCreator(const BMPCreator& other) = delete;
-    BMPCreator& operator=(const BMPCreator& other) = delete;
-    BMPCreator(const BMPCreator&& other) = delete;
-    BMPCreator& operator=(const BMPCreator&& other) = delete;
+    BMPGCODECreator(const BMPGCODECreator& other) = delete;
+    BMPGCODECreator& operator=(const BMPGCODECreator& other) = delete;
+    BMPGCODECreator(const BMPGCODECreator&& other) = delete;
+    BMPGCODECreator& operator=(const BMPGCODECreator&& other) = delete;
 private:
 
     void SetupStreams();
     void ReadGCODEData();
     void NormalizeCoordinates();
     void WriteBMP();
+    void WriteGCODE();
 
     std::shared_ptr<std::fstream> inStream;
-    std::shared_ptr<std::ofstream> outStream;
+    std::shared_ptr<std::ofstream> bmpStream;
+    std::shared_ptr<std::ofstream> gcodeStream;
 
     std::string inputPath;
-    std::string outputPath;
+    std::string outputName;
 
     std::vector<std::vector<float>> gcodeBuff;
 

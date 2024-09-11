@@ -209,7 +209,6 @@ CMakeFiles/pajk.dir/src/bmpCreator.cpp.o: \
  /usr/include/c++/13/list /usr/include/c++/13/bits/stl_list.h \
  /usr/include/c++/13/bits/list.tcc \
  /home/jakob/Documents/PajkDesktop/src/glRasterizer.hpp \
- /usr/include/c++/13/stdfloat \
  /home/jakob/Documents/PajkDesktop/src/../glad/glad.h \
  /home/jakob/Documents/PajkDesktop/src/../glad/khrplatform.h \
  /usr/include/GLFW/glfw3.h

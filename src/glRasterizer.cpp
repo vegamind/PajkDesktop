@@ -39,9 +39,9 @@ void GLRasterizer::CreateContext(){
     glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);
     glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 6);
     glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
-    glfwWindowHint(GLFW_VISIBLE, GLFW_FALSE);
+    glfwWindowHint(GLFW_VISIBLE, GLFW_TRUE);
 
-    window = glfwCreateWindow(1280, 720, "", nullptr, nullptr);
+    window = glfwCreateWindow(resX, resY, "", nullptr, nullptr);
 
     if(window == nullptr){
         throw std::runtime_error("Failed to create as GLFW window");
@@ -106,6 +106,7 @@ void GLRasterizer::DrawShape(){
 
     glUseProgram(program);
 
+
     for(uint32_t i = 0; i < data.size(); i++){
         if(data[i].empty()){
             continue;
@@ -114,16 +115,33 @@ void GLRasterizer::DrawShape(){
         glBindVertexArray(VAO[i]);
         glDrawArrays(GL_LINE_LOOP, 0, data[i].size()/2);
     }
-
-    glfwSwapBuffers(window);
+    
 }
 
 void GLRasterizer::ReadPixels(){
-    pixels.resize(resX * resY * 4);
+    std::vector<uint8_t> buff;
+    buff.resize(resX * resY);
+    pixels.reserve(resX * resY);
 
-    glReadPixels(0, 0, resX, resY, GL_RGBA, GL_UNSIGNED_BYTE, pixels.data());
+    glReadPixels(0, 0, resX, resY, GL_RED, GL_UNSIGNED_BYTE, buff.data());
+
+    for(uint32_t x = 0; x < resX; x++){
+        for(uint32_t y = 0; y < resY; y++){
+            uint8_t p = buff[x + y * resX];
+
+            if(!p){
+                continue;
+            }
+
+            pixels.push_back(x);           
+            pixels.push_back(y);           
+        }
+    }
+
+    pixels.shrink_to_fit();
+
 }
 
-std::vector<uint8_t>& GLRasterizer::GetPixelData(){
+std::vector<uint16_t>& GLRasterizer::GetPixelData(){
     return pixels;
 }

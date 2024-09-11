@@ -9,7 +9,7 @@
 
 class GCODEInterpreter{
 public:
-    GCODEInterpreter(std::string in, std::string out);
+    GCODEInterpreter(std::string in);
 
     GCODEInterpreter(const GCODEInterpreter& other) = delete;
     GCODEInterpreter& operator=(const GCODEInterpreter& other) = delete;

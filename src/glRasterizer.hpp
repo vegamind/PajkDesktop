@@ -17,7 +17,7 @@ public:
     GLRasterizer(const GLRasterizer&& other) = delete;
     GLRasterizer& operator=(const GLRasterizer&& other) = delete;
 
-    std::vector<uint8_t>& GetPixelData();
+    std::vector<uint16_t>& GetPixelData();
 
 private:
     void CreateContext();
@@ -35,5 +35,5 @@ private:
     uint32_t resY;
     
     std::vector<std::vector<float>>& data;
-    std::vector<uint8_t> pixels;
+    std::vector<uint16_t> pixels;
 };

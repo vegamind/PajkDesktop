@@ -3,7 +3,7 @@
 #include <fstream>
 #include <exception>
 
-GCODEInterpreter::GCODEInterpreter(std::string inputPath, std::string outputPath): inputPath(inputPath), outputPath(outputPath),
+GCODEInterpreter::GCODEInterpreter(std::string inputPath): inputPath(inputPath), outputPath("tmp.bin"),
 lastX(-1), lastY(-1), z(0){
     SetupStreams();
     ReadFile();
@@ -138,5 +138,7 @@ GCODEInterpreter::~GCODEInterpreter(){
 
     inStream->close();
     outStream->close();
+
+    std::remove(outputPath.c_str());
 }
 
