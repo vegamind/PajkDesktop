@@ -24,7 +24,7 @@ void BMPGCODECreator::SetupStreams(){
         throw std::runtime_error("Failed to create or truncate a file for writing " + inputPath);
     }
 
-    gcodeStream = std::make_shared<std::ofstream>(outputName + ".pajk");
+    gcodeStream = std::make_shared<std::ofstream>(outputName + ".pjk");
     if(!gcodeStream->is_open()){
         throw std::runtime_error("Failed to create or truncate a file for writing " + inputPath);
     }
@@ -102,8 +102,18 @@ void BMPGCODECreator::WriteBMP(){
 }
 
 void BMPGCODECreator::WriteGCODE(){
+
+    uint32_t factor = pow(10, FLOAT_PRECISION);
+
     for(std::vector<float>& buff : gcodeBuff){
-        gcodeStream->write(reinterpret_cast<char*>(buff.data()), buff.size() * sizeof(float));
+        std::vector<uint32_t> writeBuff;
+        writeBuff.reserve(buff.size());
+        
+        for(float& f : buff){
+            writeBuff.push_back(floor(f * factor));
+        }
+
+        gcodeStream->write(reinterpret_cast<char*>(writeBuff.data()), writeBuff.size() * sizeof(uint32_t));
     }
 }
 

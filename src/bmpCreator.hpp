@@ -8,11 +8,14 @@
 #include <array>
 #include <cstring>
 #include <list>
+#include <cmath>
 
 #include "glRasterizer.hpp"
 
 #define DISPLAY_X (uint32_t)160
 #define DISPLAY_Y (uint32_t)128
+
+#define FLOAT_PRECISION 6 // adjust if needed
 
 class BMPGCODECreator{
 public:
