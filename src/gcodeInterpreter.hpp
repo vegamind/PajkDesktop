@@ -4,6 +4,10 @@
 #include <memory>
 #include <vector>
 #include <cmath>
+#include <cstring>
+#include <fstream>
+#include <exception>
+#include <list>
 
 #define POINT_DIST_TRESHOLD 0.2f
 
@@ -22,6 +26,7 @@ private:
 
     void SetupStreams();
     void ReadFile();
+    void WriteToFile();
 
     void InterpretLine(std::string line);
     void InterpretLineSubstr(std::string substr);
@@ -33,6 +38,8 @@ private:
     std::string outputPath;
 
     size_t lastGPos;
+
+    std::list<std::list<float>> data;
 
     uint32_t lastX;
     uint32_t lastY;

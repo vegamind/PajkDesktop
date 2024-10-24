@@ -1,12 +1,12 @@
 #include "gcodeInterpreter.hpp"
 
-#include <fstream>
-#include <exception>
 
 GCODEInterpreter::GCODEInterpreter(std::string inputPath): inputPath(inputPath), outputPath("tmp.bin"),
 lastX(-1), lastY(-1), z(0){
+    data.emplace_back();
     SetupStreams();
     ReadFile();
+    WriteToFile();
 }
 
 void GCODEInterpreter::SetupStreams(){
@@ -47,24 +47,25 @@ void GCODEInterpreter::ReadFile(){
 void GCODEInterpreter::InterpretLine(std::string line){
     std::vector<std::string> substrs;
 
+    bool f300Found = false;
+
+
     for(uint32_t i = 0; i < line.size();){
         std::size_t substrEnd = line.find(' ', i);
 
         if(substrEnd == std::string::npos){
-            substrEnd = line.size()-1;
+            substrEnd = line.size();
         }
 
         std::string substr = line.substr(i, substrEnd - i);
 
-        if(substr[0] == 'Z'){
-            InterpretLineSubstr(substr);
-            return;
+        if(!substr.compare("F300")){
+            f300Found = true;
         }
 
         i = substrEnd + 1;
 
         substrs.push_back(substr);
-
     }
 
 
@@ -72,6 +73,11 @@ void GCODEInterpreter::InterpretLine(std::string line){
 
     if(substrs.size() < 2){
         return;
+    }
+
+
+    if(!f300Found){
+        data.emplace_back();
     }
 
     if(!(substrs[0][0] == 'G' && substrs[1][0] == 'X' && substrs[2][0] == 'Y')){
@@ -84,15 +90,10 @@ void GCODEInterpreter::InterpretLine(std::string line){
 }
 
 void GCODEInterpreter::InterpretLineSubstr(std::string substr){
-    if(substr[0] == 'Z'){
-        std::string numStr = substr.substr(1, substr.size()-1);
-        z = std::stof(numStr);
+    if(!substr.compare("F300")){
+        data.emplace_back();
         return;
     }
-
-    //if(z > -2){//todo bruh
-    //    return;
-    //}
 
     if(substr[0] == 'G'){
         std::string numStr = substr.substr(1, substr.size()-1);
@@ -110,28 +111,29 @@ void GCODEInterpreter::InterpretLineSubstr(std::string substr){
         std::string numStr = substr.substr(1, substr.size()-1);
         float numF = std::stof(numStr);
 
-
-        //if(substr[0] == 'X'){
-        //    if(fabsf(lastX-numF) > POINT_DIST_TRESHOLD && lastX != -1){
-        //        std::cerr << lastX << "\n";
-        //        outStream->seekp(lastGPos);
-        //    }
-
-        //    lastX = numF;
-        //}else{
-        //    if(fabsf(lastY-numF) > POINT_DIST_TRESHOLD && lastY != -1){
-        //        std::cerr << lastY << "\n";
-        //        outStream->seekp(lastGPos);
-        //    }
-
-        //    lastY = numF;
-        //}
-
-
-        outStream->write(reinterpret_cast<char*>(&numF), sizeof(numF));
-
-
+        data.back().push_back(numF);
     }
+}
+
+void GCODEInterpreter::WriteToFile(){
+    uint32_t max = 0;
+    std::list<float>* max_chunk;
+
+    for(auto& chunk : data){
+        if(chunk.size() > max){
+            max_chunk = &chunk;
+            max = chunk.size();
+        }
+    }
+
+    std::vector<float> chunk_vec;
+    chunk_vec.reserve(max_chunk->size());
+
+    for(float f : *max_chunk){
+        chunk_vec.push_back(f);
+    }
+
+    outStream->write((char*)chunk_vec.data(), chunk_vec.size() * sizeof(float));
 }
 
 GCODEInterpreter::~GCODEInterpreter(){

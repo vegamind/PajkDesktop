@@ -115,7 +115,9 @@ void GLRasterizer::DrawShape(){
         glBindVertexArray(VAO[i]);
         glDrawArrays(GL_LINE_LOOP, 0, data[i].size()/2);
     }
-    
+
+    glfwSwapBuffers(window);
+    while(!glfwWindowShouldClose(window)){glfwPollEvents();}
 }
 
 void GLRasterizer::ReadPixels(){

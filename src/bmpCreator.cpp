@@ -112,10 +112,10 @@ void BMPGCODECreator::WriteGCODE(){
 
     for(std::vector<float>& buff : gcodeBuff){
         for(int i = 0; i < buff.size(); i += 2){
-            buff[i] *= abs(TOPLEFT_BORDER[0]) + abs(TOPRIGHT_BORDER[0]);
+            buff[i] *= abs(TOPLEFT_BORDER[0] - TOPRIGHT_BORDER[0]);
             buff[i] +=  TOPLEFT_BORDER[0];
 
-            buff[i+1] *= abs(TOPLEFT_BORDER[1]) + abs(BOTTOMLEFT_BORDER[1]);
+            buff[i+1] *= abs(TOPLEFT_BORDER[1] - BOTTOMLEFT_BORDER[1]);
             buff[i+1] += BOTTOMLEFT_BORDER[1];
         }
 
@@ -124,9 +124,6 @@ void BMPGCODECreator::WriteGCODE(){
 }
 
 BMPGCODECreator::~BMPGCODECreator(){
-    std::flush(*bmpStream);    
-
-
     inStream->close();
     gcodeStream->close();
     bmpStream->close();
